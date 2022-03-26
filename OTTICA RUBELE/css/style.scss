@@ -1,0 +1,490 @@
+@import "nullstyle.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@900&display=swap');
+
+
+// === === //
+// / === === //
+
+
+// === MIXIN === //
+@mixin Playfair {
+    font-family: "Playfair Display", sans-serif;
+}
+
+@mixin Inter {
+    font-family: Inter, sans-serif;
+}
+
+@mixin cta-btn {
+    background-color: $fc-primary;
+    color: #fff;
+    padding: $base*4 $base*8;
+    border-radius: $base*2;
+}
+// / === MIXIN === //
+
+
+// === VARIABLES === //
+
+$fc-primary: #505A5B;
+$fc-secondary: #EFF1ED;
+$fc-danger: #D36060;
+
+
+$fw-thin: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+$fw-black: 900;
+
+
+$base: 4px;
+$vertical-padding-xl: $base*80;
+$vertical-padding-l: $base*40;
+$vertical-padding-m: $base*30;
+$vertical-padding-s: $base*20;
+$vertical-padding-xs: $base*10;
+
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1100px;
+$breakpoint-xxl: 1400px;
+
+// / === VARIABLES === //
+
+
+// === COMMON === //
+body {
+    @include Inter;
+    background-color: $fc-secondary;
+    color: $fc-primary;
+}
+.wrapper-outer {
+}
+.wrapper-inner {
+    max-width: 1170px;
+    padding: $vertical-padding-m $base*4;
+    margin: 0 auto;
+}
+
+.subheader {
+    font-weight: $fw-bold;
+    font-size: 1.1rem;
+    line-height: $base*6;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin-bottom: $base*4;
+}
+.header {
+    font-family: 'Playfair Display';
+    font-weight: $fw-black;
+    font-size: 3.5rem;
+    line-height: $base*18;
+    margin-bottom: $base*8;
+}
+.paragraph {
+    font-weight: $fw-regular;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+// / === COMMON === //
+
+// === HEADER === //
+
+.section-header {
+    height: 92px;
+    position: fixed;
+    background-color: $fc-secondary;
+    top:0;
+    width: 100%;
+    .wrapper-inner {
+        padding: $base*8 0;
+        position: relative;
+        .navbar {
+            width: $base*220;
+            margin: 0 auto;
+        }
+        .navbar__menu {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        .navbar__link {
+            font-weight: $fw-semi-bold;
+            font-size: $base*6;
+            line-height: $base*7;
+            color: $fc-primary;
+
+            &--active {
+                color: $fc-danger;
+                text-decoration: underline;
+            }
+            &--cta-btn {
+                @include cta-btn()
+            }
+            
+        }
+        .hamburger {
+            .navbar__link {
+                position: absolute;
+                top: 50%;
+                left: $base*4;
+            }
+            display: none;
+            &__btn {
+                position: absolute;
+                top: 25%;
+                right: $base*4;
+                width: $base*15;
+                height: $base*15;
+                cursor: pointer;
+            }
+            &__cross {
+                position: absolute;
+                top: 25%;
+                right: $base*4;
+                width: $base*16;
+                height: $base*16;
+                cursor: pointer;
+                display: none;
+            }
+        
+        }
+        @media (max-width:$breakpoint-lg) {
+            .navbar__menu {
+                display: none;
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 50%;
+                background-color: $fc-secondary;
+                z-index: 99;
+                justify-content: center;
+                align-items: center;
+                transition: .2s ease-in;
+                .navbar__item:not(:last-child) {
+                    margin-bottom: $base*15;
+                }
+            }
+            .navbar__menu.active {
+                right: 0;
+
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger__btn.active {
+                display: none;
+            }
+            .hamburger__cross.active {
+                display: block;
+                z-index: 100;
+            }
+        }
+        @media (max-width:$breakpoint-sm) {
+            .navbar__menu.active {
+                width: 100%;
+                }
+            }
+        }
+        
+
+    }
+// / === HEADER === //
+
+// === HERO === //
+.section-hero {
+    .hero {
+        height: 1024px;
+        max-width: 1440px;
+        margin: 0 auto;
+        background: url("../img/carlos-vaz-KP4bxnxAilU-unsplash\ 1.png") no-repeat;
+        .hero__text {
+            width: $base * 127;
+            color: $fc-secondary;
+            float: right;
+            padding-top: $base*65;
+            padding-right: $base*26;
+        }
+        .hero__header {
+            font-family: 'Playfair Display';
+            font-weight: $fw-black;
+            font-size: 7.5rem;
+            line-height: 156px;
+            letter-spacing: 0.02em;
+            margin-bottom: $base*8;
+        }
+        .hero__subtext {
+            font-family: 'Inter';
+            font-weight: $fw-regular;
+            font-size: 2.5rem;
+            line-height: $base*13;
+        }
+    @media (max-width:$breakpoint-lg) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-position-x: 30%;
+        .hero__text {
+            padding-right: 0;
+            width: 70%;
+            text-align: center;
+            padding-top: 0;
+        }
+    }
+    @media (max-width: $breakpoint-sm) {  
+        .hero {
+            &__text {
+                padding-top: $vertical-padding-xs;
+                padding-bottom: $vertical-padding-xs;
+                height: 100vh;
+            }
+            &__header {
+                font-size: 5.5rem;
+                line-height: 100px;
+            }
+            &__subtext {
+                font-size: 2rem;
+            }
+        }
+    }
+    }
+}
+// / === HERO === //
+
+// === STORIA === //
+.section-storia {
+    .wrapper-inner {
+        padding-top: $vertical-padding-l;
+        padding-bottom: $vertical-padding-l;
+        .storia {
+            max-width: 1070px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            
+        }
+        .storia__img {
+            border-radius: 10px;
+            margin-right: $vertical-padding-m;
+            width: 100%;
+            height: 100%;
+        }
+        .storia__text {
+            padding: $base*9 0;
+        }
+    @media (max-width:$breakpoint-lg) {
+        .storia {
+            flex-direction: column;
+            text-align: center;
+            &__img {
+                object-fit: cover;
+                height: 700px;
+            }
+        }
+        padding-top: $vertical-padding-s;
+        padding-bottom: $vertical-padding-s;
+        
+    }
+    }
+}
+// / === STORIA === //
+
+// === OTTICA === //
+.section-ottica {
+    background-color: $fc-primary;
+    color: $fc-secondary;
+
+    .wrapper-inner {
+        padding-top: $vertical-padding-s;
+        padding-bottom: $vertical-padding-s;
+        .ottica {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &__img {
+                margin-right: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            &__brands {
+                .header {
+                    font-size: 32px;
+                    line-height: 42px;
+                    text-align: center;
+                    margin-bottom: $vertical-padding-s;
+                }
+                
+            }
+            .brand:not(:last-child) {
+                margin-right: $base*20;
+            }
+            &__paragraph {
+                margin-right: $base*30;
+            }
+            
+        }
+        .ottica__content {
+            display: flex;
+            flex-direction: row-reverse;
+            margin-bottom: $vertical-padding-m;
+        }
+        @media (max-width:$breakpoint-lg) {
+            .ottica {
+                &__content {
+                    flex-direction: column;
+                    text-align: center;
+                    margin-bottom: $vertical-padding-xs;
+                    &__img {
+                        object-fit: cover;
+                        height: 700px;
+                    }
+                    .paragraph {
+                        margin: 0 auto;
+                        
+                    }
+                    .subheader {
+                        display: block;
+                        margin-top: $base*7;
+                    }
+                    
+                }
+                &__brands {
+                    .brands-container{
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        .brand:not(:last-child) {
+                            width: 100%;
+                            height: 100%;
+                            margin-bottom: $base*8;
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+        
+
+    }
+}
+// / === OTTICA === //
+
+// === VISITA === //
+.section-visita {
+    .wrapper-inner {
+        padding-top: $vertical-padding-m;
+        padding-bottom: $vertical-padding-m;
+
+        .visita {
+            display: flex;
+            flex-direction: column;
+            &__cta-btn {
+                @include cta-btn();
+                font-weight: $fw-medium;
+                font-size: 1.5rem;
+                line-height: $base*7;
+            }
+
+            &__img {
+                margin-bottom: $base*17;
+            }
+            .visita__text {
+                max-width: $base*143;
+                margin: 0 auto;
+                .paragraph {
+                    margin-bottom: $vertical-padding-xs;
+                }
+            }
+            @media (max-width:$breakpoint-lg) {
+                text-align: center;
+            }
+        }
+    }
+    @media (max-width: $breakpoint-sm) {
+        
+    } 
+}
+// / === VISITA === //
+
+// === FOOTER === //
+.section-footer {
+    background-color: $fc-primary;
+    color: $fc-secondary;
+
+    .wrapper-inner {
+        padding-top: $vertical-padding-s;
+        padding-bottom: $vertical-padding-xs;
+    }
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .footer__columns {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: $vertical-padding-s;
+    }
+    .footer__column{
+        max-width: $base*69;
+    }
+    .footer__item {
+        margin-bottom: $base*5;
+        a {
+            font-weight: $fw-regular;
+            font-size: $base*4;
+            line-height: 21px;
+            color: $fc-secondary;
+        }
+        .footer__link {
+            &--logo {
+                font-weight: $fw-bold;
+                font-size: $base*6;
+                line-height: 32px;
+            }
+            &--underlined {
+                text-decoration: underline;
+            }
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1rem;
+            }
+        }
+    
+
+    }
+    .copyright {
+        line-height: 1.3rem;
+    }
+    @media (max-width: $breakpoint-sm) { 
+        .wrapper-inner {
+            padding-top: $vertical-padding-xs;
+            padding-bottom: $vertical-padding-xs;
+            .footer__columns {
+                margin-bottom: $vertical-padding-xs;
+            }
+        }
+    }
+    
+}
+// / === FOOTER === //
+
+
+
+
+
+
+
